@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/bdavis171/Digimon-Search-App/issues"
   },
-  "homepage": "https://github.com/bdavis171/Digimon-Search-App#readme"
+  "homepage": "https://github.com/bdavis171/Digimon-Search-App#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10",
+    "nodemon": "^2.0.3"
+  }
 }
