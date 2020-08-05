@@ -10,6 +10,13 @@ const port = process.env.PORT || 1997;
 const api = require('./routes/api');
 app.use('/api',api);
 
+app.use(express.static('../trex/build')); // render react when backend runs while deploying application
+
+// send react app
+app.use(function(req, res) {
+	res.sendFile(path.join(__dirname, '../trex/build/index.html'));
+});
+
 // CONNECTING TO A MONGO DATABASE
 // reference the mongoose module
 let mongoose = require('mongoose');
