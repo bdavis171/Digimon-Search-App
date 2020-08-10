@@ -8,10 +8,20 @@ class AppContainer extends Component {
             searchName: '',
             searchGeneration: '',
             searchAttribute: '',
-            searchResults: ''
+            searchResults: '',
+            data: []
         }
     }
 
+    componentDidMount = () => {
+        this.loadData();
+    }
+
+    loadData = () => {
+        let data = require("./digimon-json.js");
+        // console.log(data);
+        this.setState({data: data});
+    }
     
 
     // handle changes to fields
@@ -33,12 +43,20 @@ class AppContainer extends Component {
     loadSearchData = async (event) => {
         event.preventDefault();
         if (event.target.name === 'nameSearch') {
-            const response = await fetch(`/api/searchByName/${this.state.searchName}`);
-            const json = await response.json();
-            console.table(json);
-            let jsonArray = [json];
-            this.setState({ searchResults: json });
-            console.log(json)
+            // const response = await fetch(`/api/searchByName/${this.state.searchName}`);
+            // const json = await response.json();
+            // console.table(json);
+            // let jsonArray = [json];
+            // this.setState({ searchResults: json });
+            // console.log(json)
+            let results;
+            this.state.data.forEach((digimon) => {
+                if (digimon.name === this.state.searchName){
+                    results = digimon;
+                }
+            });
+            console.log(results)
+            this.setState({searchResults: results});
         }
         else if (event.target.name === 'generationSearch') {
             const response = await fetch(`/api/searchByGeneration/${this.state.searchGeneration}`);
