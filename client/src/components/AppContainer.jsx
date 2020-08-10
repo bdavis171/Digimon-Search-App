@@ -59,16 +59,33 @@ class AppContainer extends Component {
             this.setState({searchResults: results});
         }
         else if (event.target.name === 'generationSearch') {
-            const response = await fetch(`/api/searchByGeneration/${this.state.searchGeneration}`);
-            const json = await response.json();
-            console.table(json);
-            this.setState({ searchResults: json });
+            // const response = await fetch(`/api/searchByGeneration/${this.state.searchGeneration}`);
+            // const json = await response.json();
+            // console.table(json);
+            // this.setState({ searchResults: json });
+            let results = [];
+            this.state.data.forEach((digimon) => {
+                if (digimon.generation === this.state.searchGeneration){
+                    results.push(digimon);
+                }
+            })
+            console.log(results);
+            this.setState({searchResults: results});
         }
         else if (event.target.name === 'attributeSearch') {
-            const response = await fetch(`/api/searchByAttribute/${this.state.searchAttribute}`);
-            const json = await response.json();
-            console.table(json);
-            this.setState({ searchResults: json });
+            // const response = await fetch(`/api/searchByAttribute/${this.state.searchAttribute}`);
+            // const json = await response.json();
+            // console.table(json);
+            // this.setState({ searchResults: json });
+            let results = [];
+            this.state.data.forEach((digimon) => {
+                if(digimon.attribute === this.state.searchAttribute){
+                    results.push(digimon);
+                }
+            });
+            console.log(results);
+            this.setState({searchResults: results});
+
         }
         console.log(this.state.searchResults.length);
     }
@@ -83,7 +100,7 @@ class AppContainer extends Component {
                     <fieldset>
                         <legend>{digimon.name}</legend>
                         <p>Generation: {digimon.generation}</p>
-                        <p>Atribute: {digimon.attribute}</p>
+                        <p>Attribute: {digimon.attribute}</p>
                         <p>Prior Form: {digimon.priorForm}</p>
                         <p>Next Form: {digimon.nextForm}</p>
                         <p>{digimon.description}</p>
@@ -101,7 +118,7 @@ class AppContainer extends Component {
                                     <fieldset>
                                         <legend>{digimon.name}</legend>
                                         <p>Generation: {digimon.generation}</p>
-                                        <p>Atribute: {digimon.attribute}</p>
+                                        <p>Attribute: {digimon.attribute}</p>
                                         <p>Prior Form: {digimon.priorForm}</p>
                                         <p>Next Form: {digimon.nextForm}</p>
                                         <p>{digimon.description}</p>
